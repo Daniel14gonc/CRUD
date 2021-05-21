@@ -9,6 +9,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private var adapter = Adapter({
         clickListener -> showItemClick(clickListener)
+    },
+    {
+        longClickListener -> changeItemClick(longClickListener)
     })
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,5 +39,9 @@ class MainActivity : AppCompatActivity() {
 
     fun showItemClick(postion:Int){
         adapter.deleteItem(postion)
+    }
+
+    fun changeItemClick(position:Int){
+        adapter.changeData(position)
     }
 }

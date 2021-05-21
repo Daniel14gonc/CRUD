@@ -4,7 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class Adapter(private val clickListener: (Int) -> Unit): RecyclerView.Adapter<ItemsViewHolder>() {
+class Adapter(private val clickListener: (Int) -> Unit,
+                private val longClickListener:(Int)-> Unit): RecyclerView.Adapter<ItemsViewHolder>() {
     private var items: MutableList<String> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
@@ -18,7 +19,7 @@ class Adapter(private val clickListener: (Int) -> Unit): RecyclerView.Adapter<It
 
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
         val item = items[position]
-        holder.bind(item, clickListener)
+        holder.bind(item, clickListener, longClickListener)
     }
 
     fun setItems(newItems: MutableList<String>){
@@ -31,7 +32,14 @@ class Adapter(private val clickListener: (Int) -> Unit): RecyclerView.Adapter<It
     }
 
     fun deleteItem(position: Int){
-        items.removeAt(position)
+        if(!items.isEmpty()){
+            items.removeAt(position)
+            notifyDataSetChanged()
+        }
+    }
+
+    fun changeData(position: Int){
+        items[position] = "Changed"
         notifyDataSetChanged()
     }
 
