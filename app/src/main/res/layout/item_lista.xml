@@ -8,8 +8,9 @@
         android:padding="16dp"
         android:textSize="18sp"
         android:gravity="center"
+        android:fontFamily="@font/robotobold"
         android:layout_margin="5dp"
-        android:background="@drawable/border"
+        android:background="@drawable/rec1"
         android:layout_width="match_parent"
-        android:layout_height="80dp"/>
+        android:layout_height="140dp"/>
 </LinearLayout>
